@@ -7,14 +7,14 @@ describe('Logger', function() {
         it('should init noop', function() {
             var logger = require('../lib/logger')({ silent: true });
 
-            expect(logger.toString()).toEqual('function () {}');
+            expect(logger()).toEqual(undefined);
             delete require.cache[require.resolve('../lib/logger')];
         });
 
         it('should init fine', function() {
             var logger = require('../lib/logger');
 
-            expect(logger.toString()).not.toEqual('function () {}');
+            expect(logger()).not.toEqual(undefined);
             delete require.cache[require.resolve('../lib/logger')];
         });
     });

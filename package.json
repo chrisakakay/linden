@@ -6,7 +6,8 @@
   "scripts": {
     "local": "npm -g install .",
     "test": "./node_modules/.bin/jasmine",
-    "prelocal": "npm run test"
+    "coverage": "./node_modules/.bin/istanbul cover --include-all-sources ./node_modules/jasmine/bin/jasmine.js",
+    "prelocal": "npm run coverage"
   },
   "bin": {
     "linden": "bin/linden.js"
@@ -19,6 +20,7 @@
     "pretty-hrtime": "^1.0.2"
   },
   "devDependencies": {
+    "istanbul": "^0.4.3",
     "jasmine": "^2.4.1"
   }
 }
