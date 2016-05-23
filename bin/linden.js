@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-
 'use strict';
 
 // MAGIC!
-require('../lib/globals');
+global.LINDEN   = require('../lib/globals');
 
-var g       = global.LINDEN;
-var conf    = require('../lib/configurator');
+var g           = global.LINDEN;
+var conf        = require('../lib/configurator');
+var helper      = require('../lib/helper');
 
 // Handling failed exit
 process.once('exit', function(code) {
@@ -20,12 +20,12 @@ init();
 function init() {
     if (g.tasks.length === 0) {
         if (g.flagVersion) {
-            g.helper.printVersion();
+            helper.printVersion();
             process.exit(0);
         }
 
         if (g.flagHelp) {
-            g.helper.printHelp();
+            helper.printHelp();
             process.exit(0);
         }
 

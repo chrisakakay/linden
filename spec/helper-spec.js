@@ -1,9 +1,4 @@
-global.LINDEN = {
-    package: {
-        version: '0.1.0'
-    },
-    log: function() {}
-};
+global.LINDEN = require('../lib/globals');
 
 var helper = require('../lib/helper');
 

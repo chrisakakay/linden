@@ -1,5 +1,4 @@
-var linden = jasmine.createSpyObj('global.LINDEN', ['log']);
-var c      = require('chalk');
+var c = require('chalk');
 
 describe('Logger', function() {
     beforeEach(function() {
