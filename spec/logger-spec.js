@@ -1,23 +1,24 @@
+var linden = jasmine.createSpyObj('global.LINDEN', ['log']);
+var c      = require('chalk');
+
 describe('Logger', function() {
     beforeEach(function() {
-        spyOn(console.log, 'apply').and.callThrough();
+        delete require.cache[require.resolve('../lib/logger')];
     });
 
-    describe('init', function() {
-        it('should init noop', function() {
+    describe('logger', function() {
+        it('should be silent', function() {
             var logger = require('../lib/logger')({ silent: true });
 
             expect(logger()).toEqual(undefined);
-            delete require.cache[require.resolve('../lib/logger')];
         });
 
-        it('should init fine', function() {
-            var logger = require('../lib/logger');
+        it('should log fine', function() {
+            var logger = require('../lib/logger')();
+            spyOn(process.stdout, 'write').and.callThrough();
 
             expect(logger()).not.toEqual(undefined);
-            delete require.cache[require.resolve('../lib/logger')];
+            expect(process.stdout.write).toHaveBeenCalled();
         });
     });
-
-    // Inside the logging function will be tested later
 });

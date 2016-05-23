@@ -38,7 +38,7 @@ function init() {
             case 'run':
                 conf.open();
                 break;
-            default: console.log('Unknown command');
+            default: g.log('Unknown command');
         }
     }
 }
