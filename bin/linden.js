@@ -22,14 +22,14 @@ function init() {
             process.exit(0);
         }
 
-        conf.open();
+        conf.open(g.configFile);
     } else {
         switch (g.tasks[0]) {
             case 'init':
                 conf.init();
                 break;
             case 'run':
-                conf.open();
+                conf.open(g.configFile);
                 break;
             default: g.log('Unknown command');
         }
