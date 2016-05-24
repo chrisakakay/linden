@@ -10,14 +10,19 @@ describe('Logger', function() {
             var logger = require('../lib/logger')({ silent: true });
 
             expect(logger()).toEqual(undefined);
+            expect(logger).toBeDefined();
         });
 
         it('should log fine', function() {
             var logger = require('../lib/logger')();
-            spyOn(process.stdout, 'write').and.callThrough();
+            spyOn(console, 'log').and.callThrough();
+            spyOn(global, 'Date').and.callFake(function() {
+                return { toTimeString: function () { return '' }}
+            });
 
+            expect(logger).toBeDefined();
             expect(logger()).not.toEqual(undefined);
-            expect(process.stdout.write).toHaveBeenCalled();
+            expect(console.log).toHaveBeenCalled();
         });
     });
 });

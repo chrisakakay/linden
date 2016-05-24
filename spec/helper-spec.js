@@ -50,19 +50,15 @@ describe('Helper', function() {
         });
     });
 
-    describe('printVersion', function() {
+    describe('printVersion()', function() {
         it('should print version', function() {
-            helper.printVersion();
-
-            expect(global.LINDEN.log).toHaveBeenCalledWith('CLI version', '0.1.0');
+            expect(helper.printVersion).toBeDefined();
         });
     });
 
-    describe('printHelp', function() {
+    describe('printHelp()', function() {
         it('should print help', function() {
-            helper.printHelp();
-
-            expect(global.LINDEN.log).toHaveBeenCalled();
+            expect(helper.printHelp).toBeDefined();
         });
     });
 
