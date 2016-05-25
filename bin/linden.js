@@ -7,6 +7,7 @@ global.LINDEN   = require('../lib/globals');
 var g           = global.LINDEN;
 var conf        = require('../lib/configurator');
 var helper      = require('../lib/helper');
+var runner      = require('../lib/runner');
 
 init();
 
