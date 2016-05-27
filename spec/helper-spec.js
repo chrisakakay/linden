@@ -74,6 +74,22 @@ describe('Helper', function() {
         });
     });
 
+    describe('folderExists()', function() {
+        it('should handle existing folder', function() {
+            expect(helper.folderExists('./spec')).toEqual(true);
+            expect(helper.folderExists('./spec/support')).toEqual(true);
+        });
+
+        it('should handle missing fodler', function() {
+            expect(helper.folderExists()).toEqual(false);
+            expect(helper.folderExists('./abc')).toEqual(false);
+        });
+
+        it('should handle file', function() {
+            expect(helper.folderExists('./abc.json')).toEqual(false);
+        });
+    });
+
     describe('printVersion()', function() {
         it('should print version', function() {
             expect(helper.printVersion).toBeDefined();
