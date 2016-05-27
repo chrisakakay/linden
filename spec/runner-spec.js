@@ -6,7 +6,7 @@ describe('Runner', function () {
     var webdriver   = jasmine.createSpyObj('webdriver', ['Builder']);
 
     beforeEach(function () {
-        spyOn(g, 'log').and.callFake(function () { return {}; });
+        spyOn(g, 'log').and.callFake(function () { return ''; });
     });
 
     it('should have functions', function () {
@@ -20,6 +20,7 @@ describe('Runner', function () {
         it('should init', function() {
             var driver = runner.init();
 
+            expect(g.log).toHaveBeenCalledWith('Initializing driver');
             expect(driver).not.toEqual(null);
             expect(driver).toBeDefined();
             expect(driver.constructor.name).toEqual('Driver');
