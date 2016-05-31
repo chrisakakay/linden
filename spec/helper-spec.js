@@ -1,10 +1,13 @@
 global.LINDEN = require('../lib/globals');
 
-var helper = require('../lib/helper');
+
 
 describe('Helper', function() {
+    var helper      = require('../lib/helper');
+    var g           = global.LINDEN;
+
     beforeEach(function() {
-        spyOn(global.LINDEN, 'log').and.callThrough();
+        spyOn(g, 'log').and.callFake(function () { return ''; });
     });
 
     describe('isObject()', function() {
@@ -93,12 +96,20 @@ describe('Helper', function() {
     describe('printVersion()', function() {
         it('should print version', function() {
             expect(helper.printVersion).toBeDefined();
+
+            helper.printVersion();
+
+            expect(g.log).toHaveBeenCalled();
         });
     });
 
     describe('printHelp()', function() {
         it('should print help', function() {
             expect(helper.printHelp).toBeDefined();
+
+            helper.printHelp();
+
+            expect(g.log).toHaveBeenCalled();
         });
     });
 
