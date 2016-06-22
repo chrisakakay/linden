@@ -4,4 +4,4 @@
 [![NPM version](https://img.shields.io/npm/v/linden.svg)](https://www.npmjs.com/package/linden)
 [![Gitter chat](https://badges.gitter.im/chrisakakay/linden.svg)](https://gitter.im/gulpjs/gulp)
 
-Linden is an npm package for easy visual regression testing.
+Linden is a easy visual regression testing tool.
