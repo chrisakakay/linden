@@ -7,7 +7,7 @@
   "scripts": {
     "local": "npm -g install .",
     "test": "./node_modules/.bin/jasmine",
-    "coverage": "./node_modules/.bin/istanbul cover --include-all-sources ./node_modules/jasmine/bin/jasmine.js",
+    "coverage": "./node_modules/.bin/istanbul cover --include-all-sources -x **/spec/** ./node_modules/jasmine/bin/jasmine.js",
     "prelocal": "npm run coverage",
     "precoveralls": "npm run coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
