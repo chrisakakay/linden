@@ -2,6 +2,7 @@
   "name": "linden",
   "version": "0.1.0",
   "description": "Visual regression tool",
+  "repository": "chrisakakay/linden",
   "main": "index.js",
   "scripts": {
     "local": "npm -g install .",
