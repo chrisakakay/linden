@@ -9,7 +9,7 @@ describe('Globals', function() {
         expect(g.flagHelp).toEqual(false);
         expect(g.flagVersion).toEqual(false);
         expect(g.flagSilent).toEqual(false);
-        expect(g.tasks).toEqual([]);
+        expect(g.tasks).toEqual(['run']);
         expect(g.configFile).toEqual('linden.json');
         expect(g.phantomPath).toEqual(require('phantomjs-prebuilt').path);
         expect(g.package).toBeDefined();

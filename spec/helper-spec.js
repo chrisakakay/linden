@@ -1,13 +1,13 @@
 global.LINDEN = require('../lib/globals');
 
-
-
 describe('Helper', function() {
-    var helper      = require('../lib/helper');
-    var g           = global.LINDEN;
+    var helper  = require('../lib/helper');
+    var g       = global.LINDEN;
+    var fs      = require('fs');
 
     beforeEach(function() {
         spyOn(g, 'log').and.callFake(function () { return ''; });
+        spyOn(fs, 'writeFile').and.callFake(function () {});
     });
 
     describe('isObject()', function() {
@@ -93,24 +93,20 @@ describe('Helper', function() {
         });
     });
 
-    describe('printVersion()', function() {
-        it('should print version', function() {
-            expect(helper.printVersion).toBeDefined();
+    describe('savePNG()', function() {
+        it('should call fs', function() {
+            helper.savePNG('fName', 'data');
 
-            helper.printVersion();
-
-            expect(g.log).toHaveBeenCalled();
+            expect(fs.writeFile).toHaveBeenCalled();
+            expect(g.log).not.toHaveBeenCalled();
         });
-    });
 
-    describe('printHelp()', function() {
-        it('should print help', function() {
-            expect(helper.printHelp).toBeDefined();
+        it('should not call fs', function() {
+            helper.savePNG();
 
-            helper.printHelp();
-
-            expect(g.log).toHaveBeenCalled();
+            expect(fs.writeFile).not.toHaveBeenCalled();
         });
-    });
 
+        // TODO: Test fs error
+    });
 });

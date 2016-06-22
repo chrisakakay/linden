@@ -9,18 +9,27 @@ var conf        = require('../lib/configurator');
 var helper      = require('../lib/helper');
 var runner      = require('../lib/runner');
 
-if (g.tasks.length === 0) {
-    if (g.flagVersion) {
-        helper.printVersion();
-        process.exit(0);
-    }
+if (g.flagVersion) {
+    g.log('CLI version', g.package.version);
+    process.exit(0);
+}
 
-    if (g.flagHelp) {
-        helper.printHelp();
-        process.exit(0);
-    }
-
-    g.tasks.push('run');
+if (g.flagHelp) {
+    g.log([
+        'Usage: linden [command] [options]',
+        '',
+        'Options:',
+        '  -v, --version\t prints the version',
+        '  -s, --silent \t turns of logging',
+        '  -c, --config \t specifies config file',
+        '',
+        'Commands:',
+        '  init\t\tinitializes configuration file',
+        '  run \t\truns the regression',
+        '',
+        'The default command is: run'
+    ].join('\n'));
+    process.exit(0);
 }
 
 switch (g.tasks[0]) {
