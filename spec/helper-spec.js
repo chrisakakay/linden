@@ -1,3 +1,4 @@
+/* eslint-env jasmine */
 global.LINDEN = require('../lib/globals');
 
 describe('Helper', function() {

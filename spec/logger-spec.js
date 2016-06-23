@@ -1,10 +1,11 @@
+/* eslint-env jasmine */
 describe('Logger', function() {
     beforeEach(function() {
         delete require.cache[require.resolve('../lib/logger')];
 
         spyOn(console, 'log').and.callFake(function () { return ''; });
         spyOn(global, 'Date').and.callFake(function () {
-            return { toTimeString: function () { return '' }}
+            return { toTimeString: function () { return ''; }};
         });
     });
 

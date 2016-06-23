@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "local": "npm -g install .",
+    "pretest": "eslint bin lib spec",
     "test": "jasmine",
     "coverage": "istanbul cover --include-all-sources -x **/spec/** node_modules/jasmine/bin/jasmine.js",
     "prelocal": "npm run coverage",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.9",
+    "eslint": "^2.13.1",
     "istanbul": "^0.4.3",
     "jasmine": "^2.4.1"
   }

@@ -1,9 +1,9 @@
+/* eslint-env jasmine */
 global.LINDEN = require('../lib/globals');
 
 describe('Runner', function () {
     var runner      = require('../lib/runner');
     var g           = global.LINDEN;
-    var webdriver   = jasmine.createSpyObj('webdriver', ['Builder']);
     var mockCase    = {
             name:       'google',
             url:        'http://google.com',

@@ -1,3 +1,4 @@
+/* eslint-env jasmine */
 global.LINDEN = require('../lib/globals');
 
 describe('Configurator', function () {
@@ -15,14 +16,14 @@ describe('Configurator', function () {
 
     describe('init()', function () {
         it('should skip if the config exists', function() {
-            //configurator.init();
-            //expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
-            //expect(g.log).toHaveBeenCalledWith('Config file already exists');
+            // configurator.init();
+            // expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
+            // expect(g.log).toHaveBeenCalledWith('Config file already exists');
         });
 
         it('should init a new config file if not exists', function() {
-            //configurator.init();
-            //expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
+            // configurator.init();
+            // expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
         });
     });
 
@@ -35,5 +36,4 @@ describe('Configurator', function () {
 
         // TODO: Add more tests
     });
-
 });
