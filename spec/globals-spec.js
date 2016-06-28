@@ -14,7 +14,7 @@ describe('Globals', function() {
     });
 
     it('should have variables with give job', function() {
-        var g = require('../lib/globals')({ '_': ['init'] }, { cwd: 'cwd'});
+        var g = require('../lib/globals')({ '_': ['init'] }, { cwd: 'cwd', basePath: '.'});
 
         expect(g.cwd).toEqual('cwd');
         // expect(g.defaultConfigPath).toEqual() // PACKAGE_PATH/config/linden.json
