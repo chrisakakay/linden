@@ -1,13 +1,11 @@
 /* eslint-env jasmine */
-global.LINDEN = require('../lib/globals');
 
-describe('Helper', function() {
+describe('Helper', function () {
     var helper  = require('../lib/helper');
-    var g       = global.LINDEN;
+    var g       = global.LINDEN = jasmine.createSpyObj('globals', ['log']);
     var fs      = require('fs');
 
     beforeEach(function() {
-        spyOn(g, 'log').and.callFake(function () { return ''; });
         spyOn(fs, 'writeFile').and.callFake(function () {});
     });
 
