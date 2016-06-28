@@ -1,9 +1,9 @@
 /* eslint-env jasmine */
 describe('Globals', function() {
     it('should have variables with empty stuff', function() {
-        var g = require('../lib/globals')({});
+        var g = require('../lib/globals')({}, { cwd: 'cwd'});
 
-        expect(g.cwd).toEqual(process.cwd());
+        expect(g.cwd).toEqual('cwd');
         // expect(g.defaultConfigPath).toEqual() // PACKAGE_PATH/config/linden.json
         expect(g.defaultConfigName).toEqual('linden.json');
         expect(g.tasks).toEqual(['run']);
@@ -14,9 +14,9 @@ describe('Globals', function() {
     });
 
     it('should have variables with give job', function() {
-        var g = require('../lib/globals')({ '_': ['init'] });
+        var g = require('../lib/globals')({ '_': ['init'] }, { cwd: 'cwd'});
 
-        expect(g.cwd).toEqual(process.cwd());
+        expect(g.cwd).toEqual('cwd');
         // expect(g.defaultConfigPath).toEqual() // PACKAGE_PATH/config/linden.json
         expect(g.defaultConfigName).toEqual('linden.json');
         expect(g.tasks).toEqual(['init']);

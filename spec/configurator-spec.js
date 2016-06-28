@@ -1,10 +1,11 @@
 /* eslint-env jasmine */
 
 describe('Configurator', function () {
-    var configurator    = require('../lib/configurator');
-    // var g               = global.LINDEN = jasmine.createSpyObj('globals', ['log']);
+    // var g = global.LINDEN = jasmine.createSpyObj('globals', ['log']);
 
     it('should have functions', function () {
+        var configurator = require('../lib/configurator')();
+
         expect(configurator.init).toBeDefined();
         expect(configurator.open).toBeDefined();
     });
