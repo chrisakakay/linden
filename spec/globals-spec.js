@@ -1,7 +1,7 @@
 /* eslint-env jasmine */
 describe('Globals', function() {
     it('should have variables with empty stuff', function() {
-        var g = require('../lib/globals')({}, { cwd: 'cwd'});
+        var g = require('../lib/globals')({}, { cwd: 'cwd', basePath: '.'});
 
         expect(g.cwd).toEqual('cwd');
         // expect(g.defaultConfigPath).toEqual() // PACKAGE_PATH/config/linden.json
