@@ -8,7 +8,6 @@ describe('Configurator', function () {
         spyOn(fs, 'writeFileSync').and.callFake(function () { });
     });
 
-
     it('should have functions', function () {
         var configurator = require('../lib/configurator')();
 
@@ -43,9 +42,9 @@ describe('Configurator', function () {
             expect(g.log).not.toHaveBeenCalledWith('Config file already exists');
             expect(g.log).toHaveBeenCalledWith('Copying:', g.defaultConfigPath);
             // TODO FIX THIS
-            //expect(fs.readFileSync).toHaveBeenCalled();
-            //expect(fs.writeFileSync).toHaveBeenCalled();
-            //expect(g.log).toHaveBeenCalledWith('Done, try to run now');
+            // expect(fs.readFileSync).toHaveBeenCalled();
+            // expect(fs.writeFileSync).toHaveBeenCalled();
+            // expect(g.log).toHaveBeenCalledWith('Done, try to run now');
         });
     });
 
