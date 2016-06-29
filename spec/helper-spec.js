@@ -1,13 +1,11 @@
 /* eslint-env jasmine */
 
 describe('Helper', function () {
-    var g       = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
-    var helper  = require('../lib/helper')(g);
+    var helper  = require('../lib/helper');
     var fs      = require('fs');
 
     beforeEach(function() {
         spyOn(fs, 'writeFile').and.callFake(function () {});
-        spyOn(g, 'log').and.callFake(function () {});
     });
 
     describe('isObject()', function() {
@@ -98,7 +96,6 @@ describe('Helper', function () {
             helper.savePNG('fName', 'data');
 
             expect(fs.writeFile).toHaveBeenCalled();
-            expect(g.log).not.toHaveBeenCalled();
         });
 
         it('should not call fs', function() {
@@ -106,7 +103,5 @@ describe('Helper', function () {
 
             expect(fs.writeFile).not.toHaveBeenCalled();
         });
-
-        // TODO: Test fs error
     });
 });
