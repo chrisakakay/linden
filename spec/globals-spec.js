@@ -13,7 +13,7 @@ describe('Globals', function() {
         expect(g.config).toEqual({});
     });
 
-    it('should have variables with give job', function() {
+    it('should have variables with given job', function() {
         var g = require('../lib/globals')({ '_': ['init'] }, { cwd: 'cwd', basePath: '.'});
 
         expect(g.cwd).toEqual('cwd');

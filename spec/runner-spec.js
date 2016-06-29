@@ -1,8 +1,8 @@
 /* eslint-env jasmine */
 
 describe('Runner', function () {
-    var runner      = require('../lib/runner');
-    // var g           = global.LINDEN = jasmine.createSpyObj('globals', ['log']);
+    var g           = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+    var runner      = require('../lib/runner')(g);
     var mockCase    = {
             name:       'google',
             url:        'http://google.com',
@@ -23,12 +23,14 @@ describe('Runner', function () {
 
     describe('init()', function() {
         it('should init', function() {
-            // var driver = runner.init();
+            spyOn(g, 'log').and.callFake(function () {});
 
-            // expect(g.log).toHaveBeenCalledWith('Initializing driver');
-            // expect(driver).not.toEqual(null);
-            // expect(driver).toBeDefined();
-            // expect(driver.constructor.name).toEqual('Driver');
+            var driver = runner.init();
+
+            expect(g.log).toHaveBeenCalledWith('Initializing driver');
+            expect(driver).not.toEqual(null);
+            expect(driver).toBeDefined();
+            expect(driver.constructor.name).toEqual('Driver');
         });
     });
 
@@ -52,8 +54,10 @@ describe('Runner', function () {
         });
 
         it('should return false', function() {
-            // expect(runner.addCase()).toBeFalsy();
-            // expect(g.log).toHaveBeenCalledWith('Invalid case');
+            spyOn(g, 'log').and.callFake(function () {});
+
+            expect(runner.addCase()).toBeFalsy();
+            expect(g.log).toHaveBeenCalledWith('Invalid case');
         });
     });
 

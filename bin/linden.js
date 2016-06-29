@@ -7,10 +7,10 @@ var argv = require('minimist')(process.argv.slice(2), { alias: {
         v: 'version',
         s: 'silent'
     }});
-
 var paths = {
         cwd: process.cwd(),
         basePath: process.argv[1]
     };
+var g     = require('../lib/globals')(argv, paths);
 
-require('../lib/linden')(argv, paths);
+require('../lib/linden')(g);
