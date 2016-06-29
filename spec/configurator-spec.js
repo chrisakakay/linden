@@ -1,7 +1,13 @@
 /* eslint-env jasmine */
 
 describe('Configurator', function () {
-    // var g = global.LINDEN = jasmine.createSpyObj('globals', ['log']);
+    var fs      = require('fs');
+    var helper  = require('../lib/helper');
+
+    beforeEach(function() {
+        spyOn(fs, 'writeFileSync').and.callFake(function () { });
+    });
+
 
     it('should have functions', function () {
         var configurator = require('../lib/configurator')();
@@ -12,14 +18,34 @@ describe('Configurator', function () {
 
     describe('init()', function () {
         it('should skip if the config exists', function() {
-            // configurator.init();
-            // expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
-            // expect(g.log).toHaveBeenCalledWith('Config file already exists');
+            var g       = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+            var conf    = require('../lib/configurator')(g);
+
+            spyOn(helper, 'fileExists').and.returnValue(true);
+            spyOn(g, 'log').and.callFake(function () {});
+
+            conf.init();
+
+            expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
+            expect(g.log).toHaveBeenCalledWith('Config file already exists');
         });
 
         it('should init a new config file if not exists', function() {
-            // configurator.init();
-            // expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
+            var g       = require('../lib/globals')({}, { cwd: process.cwd(), basePath: 'basePath' });
+            var conf    = require('../lib/configurator')(g);
+
+            spyOn(helper, 'fileExists').and.returnValue(false);
+            spyOn(g, 'log').and.callFake(function () {});
+
+            conf.init();
+
+            expect(g.log).toHaveBeenCalledWith('Working directory:', g.cwd);
+            expect(g.log).not.toHaveBeenCalledWith('Config file already exists');
+            expect(g.log).toHaveBeenCalledWith('Copying:', g.defaultConfigPath);
+            // TODO FIX THIS
+            //expect(fs.readFileSync).toHaveBeenCalled();
+            //expect(fs.writeFileSync).toHaveBeenCalled();
+            //expect(g.log).toHaveBeenCalledWith('Done, try to run now');
         });
     });
 
