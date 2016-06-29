@@ -1,9 +1,8 @@
 /* eslint-env jasmine */
-global.LINDEN = require('../lib/globals');
 
 describe('Runner', function () {
-    var runner      = require('../lib/runner');
-    var g           = global.LINDEN;
+    var g           = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+    var runner      = require('../lib/runner')(g);
     var mockCase    = {
             name:       'google',
             url:        'http://google.com',
@@ -12,10 +11,6 @@ describe('Runner', function () {
                 height: 1200
             }
         };
-
-    beforeEach(function () {
-        spyOn(g, 'log').and.callFake(function () { return ''; });
-    });
 
     it('should have functions', function () {
         expect(runner.init).toBeDefined();
@@ -28,6 +23,8 @@ describe('Runner', function () {
 
     describe('init()', function() {
         it('should init', function() {
+            spyOn(g, 'log').and.callFake(function () {});
+
             var driver = runner.init();
 
             expect(g.log).toHaveBeenCalledWith('Initializing driver');
@@ -57,6 +54,8 @@ describe('Runner', function () {
         });
 
         it('should return false', function() {
+            spyOn(g, 'log').and.callFake(function () {});
+
             expect(runner.addCase()).toBeFalsy();
             expect(g.log).toHaveBeenCalledWith('Invalid case');
         });

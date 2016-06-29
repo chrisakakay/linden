@@ -1,13 +1,10 @@
 /* eslint-env jasmine */
-global.LINDEN = require('../lib/globals');
 
-describe('Helper', function() {
+describe('Helper', function () {
     var helper  = require('../lib/helper');
-    var g       = global.LINDEN;
     var fs      = require('fs');
 
     beforeEach(function() {
-        spyOn(g, 'log').and.callFake(function () { return ''; });
         spyOn(fs, 'writeFile').and.callFake(function () {});
     });
 
@@ -99,7 +96,6 @@ describe('Helper', function() {
             helper.savePNG('fName', 'data');
 
             expect(fs.writeFile).toHaveBeenCalled();
-            expect(g.log).not.toHaveBeenCalled();
         });
 
         it('should not call fs', function() {
@@ -107,7 +103,5 @@ describe('Helper', function() {
 
             expect(fs.writeFile).not.toHaveBeenCalled();
         });
-
-        // TODO: Test fs error
     });
 });

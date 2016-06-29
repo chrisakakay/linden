@@ -1,41 +1,16 @@
 #!/usr/bin/env node
 'use strict';
 
-// MAGIC!
-global.LINDEN   = require('../lib/globals');
+var argv = require('minimist')(process.argv.slice(2), { alias: {
+        c: 'config',
+        h: 'help',
+        v: 'version',
+        s: 'silent'
+    }});
+var paths = {
+        cwd: process.cwd(),
+        basePath: process.argv[1]
+    };
+var g     = require('../lib/globals')(argv, paths);
 
-var g           = global.LINDEN;
-var conf        = require('../lib/configurator');
-
-if (g.flagVersion) {
-    g.log('CLI version', g.package.version);
-    process.exit(0);
-}
-
-if (g.flagHelp) {
-    g.log([
-        'Usage: linden [command] [options]',
-        '',
-        'Options:',
-        '  -v, --version\t prints the version',
-        '  -s, --silent \t turns of logging',
-        '  -c, --config \t specifies config file',
-        '',
-        'Commands:',
-        '  init\t\tinitializes configuration file',
-        '  run \t\truns the regression',
-        '',
-        'The default command is: run'
-    ].join('\n'));
-    process.exit(0);
-}
-
-switch (g.tasks[0]) {
-    case 'init':
-        conf.init();
-        break;
-    case 'run':
-        conf.open(g.configFile);
-        break;
-    default: g.log('Unknown command');
-}
+require('../lib/linden')(g);
