@@ -23,6 +23,8 @@ describe('Runner', function () {
 
     describe('init()', function() {
         it('should init', function() {
+            var g = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+
             spyOn(g, 'log').and.callFake(function () {});
 
             var driver = runner.init();
@@ -54,6 +56,8 @@ describe('Runner', function () {
         });
 
         it('should return false', function() {
+            var g = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+
             spyOn(g, 'log').and.callFake(function () {});
 
             expect(runner.addCase()).toBeFalsy();

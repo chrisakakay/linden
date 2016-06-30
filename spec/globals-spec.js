@@ -1,5 +1,9 @@
 /* eslint-env jasmine */
 describe('Globals', function() {
+    beforeEach(function () {
+        delete require.cache[require.resolve('../lib/globals')];
+    });
+
     it('should have variables with empty stuff', function() {
         var g = require('../lib/globals')({}, { cwd: 'cwd', basePath: '.'});
 
