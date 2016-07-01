@@ -169,6 +169,8 @@ describe('Configurator', function () {
             expect(g.log).toHaveBeenCalledWith('Define "dir" parameter in the configuration if you want to use a different folder');
             expect(fs.mkdirSync).toHaveBeenCalledWith(path.join(g.cwd, g.config.dir, g.runDateTime));
             expect(g.log).toHaveBeenCalledWith('Data will be saved to:', path.join(g.cwd, g.config.dir, g.runDateTime));
+
+            // TODO: RUNNER SHOULD BE TESTED SOMEHOW
         });
     });
 });
