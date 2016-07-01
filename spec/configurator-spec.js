@@ -6,6 +6,7 @@ describe('Configurator', function () {
 
     beforeEach(function() {
         spyOn(fs, 'writeFileSync').and.callFake(function () { return; });
+        spyOn(fs, 'mkdirSync').and.callFake(function () { return; });
     });
 
     it('should have functions', function () {
@@ -83,10 +84,10 @@ describe('Configurator', function () {
             spyOn(g, 'log').and.callFake(function () {});
             spyOn(JSON, 'parse').and.callFake(function () {});
 
-            conf.open('spec/mock_data/linden.json');
+            conf.open('spec/mock_data/linden-no-cases.json');
 
             expect(JSON.parse).toHaveBeenCalled();
-            expect(g.log).toHaveBeenCalledWith('Using configuration:', 'spec/mock_data/linden.json');
+            expect(g.log).toHaveBeenCalledWith('Using configuration:', 'spec/mock_data/linden-no-cases.json');
         });
     });
 
@@ -97,10 +98,56 @@ describe('Configurator', function () {
 
             spyOn(g, 'log').and.callFake(function () {});
 
-            conf.processConfig('spec/mock_data/linden.json');
+            conf.processConfig('spec/mock_data/linden-no-cases.json');
 
-            expect(g.log).toHaveBeenCalledWith('Using configuration:', 'spec/mock_data/linden.json');
+            expect(g.log).toHaveBeenCalledWith('Using configuration:', 'spec/mock_data/linden-no-cases.json');
             expect(g.log).toHaveBeenCalledWith('No cases defined');
+        });
+
+        it('should stop if the cases array is empty', function() {
+            var g       = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+            var conf    = require('../lib/configurator')(g);
+
+            spyOn(g, 'log').and.callFake(function () {});
+
+            conf.processConfig('spec/mock_data/linden-empty-cases.json');
+
+            expect(g.log).toHaveBeenCalledWith('Using configuration:', 'spec/mock_data/linden-empty-cases.json');
+            expect(g.log).toHaveBeenCalledWith('No cases defined');
+        });
+
+        it('should handle one bad case', function() {
+            var g       = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+            var conf    = require('../lib/configurator')(g);
+
+            spyOn(g, 'log').and.callFake(function () {});
+
+            conf.processConfig('spec/mock_data/linden-one-bad-case.json');
+
+            expect(g.log).toHaveBeenCalledWith('Using configuration:', 'spec/mock_data/linden-one-bad-case.json');
+            expect(g.log).not.toHaveBeenCalledWith('No cases defined');
+            expect(g.log).not.toHaveBeenCalledWith('No root directory defined for saving files');
+            expect(g.log).not.toHaveBeenCalledWith('Using directory "./linden"');
+            expect(g.log).not.toHaveBeenCalledWith('Define "dir" parameter in the configuration if you want to use a different folder');
+            expect(g.log).toHaveBeenCalledWith('No common viewports defined');
+        });
+
+        it('should handle no dir and one bad case', function() {
+            var g       = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+            var conf    = require('../lib/configurator')(g);
+
+            spyOn(g, 'log').and.callFake(function () {});
+
+            conf.processConfig('spec/mock_data/linden-no-dir-one-bad-case.json');
+
+            expect(g.log).toHaveBeenCalledWith('Using configuration:', 'spec/mock_data/linden-no-dir-one-bad-case.json');
+            expect(g.log).not.toHaveBeenCalledWith('No cases defined');
+
+            expect(g.config.dir).toEqual('./linden');
+            expect(g.log).toHaveBeenCalledWith('No root directory defined for saving files');
+            expect(g.log).toHaveBeenCalledWith('Using directory "./linden"');
+            expect(g.log).toHaveBeenCalledWith('Define "dir" parameter in the configuration if you want to use a different folder');
+            expect(g.log).toHaveBeenCalledWith('No common viewports defined');
         });
     });
 });
