@@ -6,9 +6,11 @@
   "main": "index.js",
   "scripts": {
     "local": "npm -g install .",
-    "pretest": "eslint bin lib spec",
+    "lint": "eslint bin lib spec",
+    "pretest": "npm run lint",
     "test": "jasmine",
     "coverage": "istanbul cover --include-all-sources -x **/spec/** -x **/bin/** node_modules/jasmine/bin/jasmine.js",
+    "precoverage": "npm run lint",
     "prelocal": "npm run coverage",
     "precoveralls": "npm run coverage",
     "coveralls": "cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"

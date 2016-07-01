@@ -2,6 +2,8 @@
 
 describe('Linden', function () {
     beforeEach(function () {
+        delete require.cache[require.resolve('../lib/globals')];
+
         spyOn(console, 'log').and.callFake(function () { return ''; });
         spyOn(process, 'exit').and.callFake(function () {});
     });
