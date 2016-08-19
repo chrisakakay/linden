@@ -17,7 +17,7 @@ It is easy to use, easy to configure and it will be easy to integrate to any bui
 
 - Install it globally ```npm install -g linden```
 - Create a configuration in the desired folder ```linden init``` or manually ```linden.json``` (you can name it to anything)
-- Add your stuff to the configuration file (ex.):
+- Add your stuff to the configuration file (ex.) ([configuration guide](/CONFIGURING.md)): 
 ```
 {
     "dir": "./linden",
@@ -30,7 +30,7 @@ It is easy to use, easy to configure and it will be easy to integrate to any bui
     ]
 }
 ```
-- Run linden wit ```linden run``` or just simple ```linden``` or ```linden --config="my_config.json"```
+- Run linden with ```linden run``` or just simple ```linden``` or ```linden --config="my_config.json"```
 - Report will be generated with screenshots **[COMING SOON]**
 
 ## How to contribute
