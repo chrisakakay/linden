@@ -4,21 +4,20 @@ describe('Runner', function () {
     var g           = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
     var runner      = require('../lib/runner')(g);
     var mockCase    = {
-            name:       'google',
-            url:        'http://google.com',
-            viewport:   {
-                width: 1920,
-                height: 1200
-            }
-        };
+        name:       'google',
+        url:        'http://google.com',
+        viewport:   {
+            width: 1920,
+            height: 1200
+        }
+    };
 
     it('should have functions', function () {
         expect(runner.init).toBeDefined();
         expect(runner.start).toBeDefined();
         expect(runner.reset).toBeDefined();
-        expect(runner.addCase).toBeDefined();
-        expect(runner.validate).toBeDefined();
         expect(runner.getCases).toBeDefined();
+        expect(runner.getDriver).toBeDefined();
     });
 
     describe('init()', function() {
@@ -27,7 +26,7 @@ describe('Runner', function () {
 
             spyOn(g, 'log').and.callFake(function () {});
 
-            var driver = runner.init();
+            var driver = runner.init().getDriver();
 
             expect(g.log).toHaveBeenCalledWith('Initializing driver');
             expect(driver).not.toEqual(null);
@@ -37,77 +36,55 @@ describe('Runner', function () {
     });
 
     describe('start()', function() {
-
-    });
-
-    describe('reset()', function() {
-
-    });
-
-    describe('addCase()', function() {
-        it('should return true', function() {
-            var response;
-
-            runner.reset();
-            response = runner.addCase(mockCase);
-
-            expect(response).toBeTruthy();
-            expect(runner.getCases().length).toEqual(1);
-        });
-
-        it('should return false', function() {
+        it('should do nothing without cases', function() {
             var g = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
 
             spyOn(g, 'log').and.callFake(function () {});
 
-            expect(runner.addCase()).toBeFalsy();
-            expect(g.log).toHaveBeenCalledWith('Invalid case');
+            runner.reset();
+            runner.start();
+
+            expect(g.log).toHaveBeenCalledWith('Nothing to run');
+        });
+
+        it('should do nothing with empty cases', function() {
+            var g = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+
+            spyOn(g, 'log').and.callFake(function () {});
+
+            runner.reset();
+            runner.init();
+            runner.start();
+
+            expect(g.log).toHaveBeenCalledWith('Driver already initialized');
+        });
+
+        it('should start if it has any case', function() {
+            var g = require('../lib/globals')({}, { cwd: 'cwd', basePath: 'basePath' });
+
+            spyOn(g, 'log').and.callFake(function () {});
+
+            runner.reset();
+            runner.start([ mockCase ]);
+
+            expect(g.log).toHaveBeenCalledWith('Initializing driver');
+            // expect(g.log).toHaveBeenCalledWith('Cases to run: 1');
         });
     });
 
-    describe('validate()', function() {
-        it('should return true', function() {
-            expect(runner.validate(mockCase)).toBeTruthy();
+    describe('reset()', function() {
+        it('should behave...', function() {
+            runner.init();
+            runner.reset();
+
+            expect(runner.getDriver()).toEqual(null);
         });
 
-        it('should handle undefined', function() {
-            expect(runner.validate()).toBeFalsy();
-            expect(runner.validate(undefined)).toBeFalsy();
-        });
+        it('should behave...', function() {
+            runner.reset();
+            runner.reset();
 
-        it('should handle null', function() {
-            expect(runner.validate(null)).toBeFalsy();
-        });
-
-        it('should handle empty object', function() {
-            expect(runner.validate({})).toBeFalsy();
-        });
-
-        it('should handle nameless object', function() {
-            var falsyData = {
-                    url: 'url',
-                    viewport: { width: 1, height: 1 }
-                };
-
-            expect(runner.validate(falsyData)).toBeFalsy();
-        });
-
-        it('should handle urlless object', function() {
-            var falsyData = {
-                    name: 'name',
-                    viewport: { width: 1, height: 1 }
-                };
-
-            expect(runner.validate(falsyData)).toBeFalsy();
-        });
-
-        it('should handle viewportless object', function() {
-            var falsyData = {
-                    name: 'name',
-                    url: 'url'
-                };
-
-            expect(runner.validate(falsyData)).toBeFalsy();
+            expect(runner.getDriver()).toEqual(null);
         });
     });
 
@@ -122,12 +99,10 @@ describe('Runner', function () {
             var response;
 
             runner.reset();
-            runner.addCase(mockCase);
 
             response = runner.getCases();
 
-            expect(response.length).toEqual(1);
-            expect(response[0]).toEqual(mockCase);
+            expect(response.length).toEqual(0);
         });
     });
 });
