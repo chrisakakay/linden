@@ -16,9 +16,21 @@ It is easy to use, easy to configure and it will be easy to integrate to any bui
 ## How to use
 
 - Install it globally ```npm install -g linden```
-- Create a configuration in the desired folder ```linden init```
-- Add your stuff to the configuration **[GUIDE COMING SOON]**
-- Run linden wit ```linden run``` or just simple ```linden```
+- Create a configuration in the desired folder ```linden init``` or manually ```linden.json``` (you can name it to anything)
+- Add your stuff to the configuration file (ex.):
+```
+{
+    "dir": "./linden",
+    "cases": [
+        {
+            "name": "chrisakakay-m",
+            "url": "http://chrisakakay.github.io",
+            "viewport": { "width": 900, "height": 768 }
+        }
+    ]
+}
+```
+- Run linden wit ```linden run``` or just simple ```linden``` or ```linden --config="my_config.json"```
 - Report will be generated with screenshots **[COMING SOON]**
 
 ## How to contribute
