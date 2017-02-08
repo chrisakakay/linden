@@ -1,6 +1,6 @@
 {
   "name": "linden",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Visual regression tool",
   "repository": "chrisakakay/linden",
   "main": "index.js",
@@ -8,12 +8,7 @@
     "local": "npm -g install .",
     "lint": "eslint bin lib spec",
     "pretest": "npm run lint",
-    "test": "jasmine",
-    "coverage": "istanbul cover --include-all-sources -x **/spec/** -x **/bin/** node_modules/jasmine/bin/jasmine.js",
-    "precoverage": "npm run lint",
-    "prelocal": "npm run coverage",
-    "precoveralls": "npm run coverage",
-    "coveralls": "cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
+    "test": "jest"
   },
   "bin": {
     "linden": "bin/linden.js"
@@ -23,12 +18,10 @@
   "dependencies": {
     "minimist": "^1.2.0",
     "phantomjs-prebuilt": "^2.1.7",
-    "selenium-webdriver": "^2.53.2"
+    "selenium-webdriver": "^3.0.1"
   },
   "devDependencies": {
-    "coveralls": "^2.11.9",
-    "eslint": "^2.13.1",
-    "istanbul": "^0.4.3",
-    "jasmine": "^2.4.1"
+    "eslint": "^3.15.0",
+    "jest": "^18.1.0"
   }
 }
