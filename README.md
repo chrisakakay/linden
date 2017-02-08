@@ -1,4 +1,5 @@
 # Linden
+[![Build Status](https://travis-ci.org/chrisakakay/linden.svg?branch=master)](https://travis-ci.org/chrisakakay/linden)
 [![NPM version](https://img.shields.io/npm/v/linden.svg)](https://www.npmjs.com/package/linden)
 [![Gitter chat](https://badges.gitter.im/chrisakakay/linden.svg)](https://gitter.im/chrisakakay/linden)
 

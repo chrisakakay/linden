@@ -13,6 +13,14 @@
   "bin": {
     "linden": "bin/linden.js"
   },
+  "files": [
+    "bin/linden.js",
+    "lib/command-init.js",
+    "lib/command-run.js",
+    "lib/helper.js",
+    "lib/test-runner.js",
+    "config/linden.json"
+  ],
   "author": "Krisztian Nagy",
   "license": "MIT",
   "dependencies": {
