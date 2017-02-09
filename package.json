@@ -8,9 +8,9 @@
     "local": "npm -g install .",
     "lint": "eslint bin lib __tests__ __mocks__",
     "pretest": "npm run lint",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "npm run test -- --watchAll",
-    "test:coverage": "npm run test -- --coverage"
+    "coveralls": "cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
   },
   "bin": {
     "linden": "bin/linden.js"
@@ -31,6 +31,7 @@
     "selenium-webdriver": "^3.0.1"
   },
   "devDependencies": {
+    "coveralls": "^2.11.16",
     "eslint": "^3.15.0",
     "jest": "^18.1.0"
   }
