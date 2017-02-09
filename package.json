@@ -17,6 +17,7 @@
   },
   "files": [
     "bin/linden.js",
+    "lib/cli.js",
     "lib/command-init.js",
     "lib/command-run.js",
     "lib/helper.js",
@@ -25,6 +26,9 @@
   ],
   "author": "Krisztian Nagy",
   "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "dependencies": {
     "minimist": "^1.2.0",
     "phantomjs-prebuilt": "^2.1.7",
