@@ -13,6 +13,7 @@ describe('helper', () => {
         expect(helper.fileExists('')).toBe(false);
         expect(helper.fileExists('not-existing-file')).toBe(false);
         expect(helper.fileExists('existing-file')).toBe(true);
+        expect(helper.fileExists('existing-config')).toBe(true);
     });
 
     it('folderExists()', () => {

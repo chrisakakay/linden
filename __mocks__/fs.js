@@ -5,13 +5,15 @@
 const fs        = jest.genMockFromModule('fs');
 const statData  = {
         'existing-file':    true,
+        'existing-config':  true,
         'existing-folder':  true
     };
 const fileData  = {
         'linden.json': {
             dir: './linden',
             cases: []
-        }
+        },
+        'existing-config': '{}'
     };
 
 function isTrue() {
