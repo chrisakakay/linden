@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-env jest */
+
 const fs        = jest.genMockFromModule('fs');
 const statData  = {
         'existing-file':    true,
@@ -21,10 +23,14 @@ function isFalse() {
 }
 
 function statSync(name) {
-    return {
-        isFile:         statData[name] ? isTrue : isFalse,
-        isDirectory:    statData[name] ? isTrue : isFalse
-    };
+    if (statData[name]) {
+        return {
+            isFile:         statData[name] ? isTrue : isFalse,
+            isDirectory:    statData[name] ? isTrue : isFalse
+        };
+    } else {
+        throw new Error('');
+    }
 }
 
 function readFileSync(name) {

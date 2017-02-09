@@ -6,9 +6,11 @@
   "main": "index.js",
   "scripts": {
     "local": "npm -g install .",
-    "lint": "eslint bin lib spec",
+    "lint": "eslint bin lib __tests__ __mocks__",
     "pretest": "npm run lint",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "test:coverage": "npm run test -- --coverage"
   },
   "bin": {
     "linden": "bin/linden.js"

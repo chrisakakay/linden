@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-env jest */
+
 jest.mock('fs');
 jest.mock('path');
 

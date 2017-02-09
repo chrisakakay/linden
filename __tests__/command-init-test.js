@@ -1,10 +1,11 @@
 'use strict';
 
+/* eslint-env jest */
+
 jest.mock('fs');
 jest.mock('path');
 
 const fs        = require.requireMock('fs');
-const path      = require.requireMock('path');
 const cmdInit   = require('../lib/command-init');
 
 describe('CMD: init', () => {
@@ -12,10 +13,10 @@ describe('CMD: init', () => {
         cmdInit('not-existing-file');
 
         expect(fs.writeFileSync.mock.calls.length).toBe(1);
-        expect(fs.writeFileSync.mock.calls[0]).toEqual(['not-existing-file', { dir: './linden', cases: [] }])
+        expect(fs.writeFileSync.mock.calls[0]).toEqual(['not-existing-file', { dir: './linden', cases: [] }]);
     });
 
-    it('should not create config', function() {
+    it('should not create config', () => {
         fs.writeFileSync.mock.calls = [];
 
         cmdInit('existing-file');

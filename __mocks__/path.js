@@ -1,7 +1,9 @@
+/* eslint-env jest */
+
 const path      = jest.genMockFromModule('path');
 const mockPaths = {
         '../config/linden.json': 'linden.json'
-    }
+    };
 
 function dirname(name) {
     return name;
