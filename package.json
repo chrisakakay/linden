@@ -27,7 +27,7 @@
   "author": "Krisztian Nagy",
   "license": "MIT",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=6.9.0"
   },
   "dependencies": {
     "minimist": "^1.2.0",
