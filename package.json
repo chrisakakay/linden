@@ -31,9 +31,8 @@
   },
   "dependencies": {
     "is-not-empty": "^0.1.0",
-    "minimist": "^1.2.0",
-    "phantomjs-prebuilt": "^2.1.7",
-    "selenium-webdriver": "^3.0.1"
+    "linden-task-runner": "^0.1.0",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.16",
