@@ -23,30 +23,6 @@ describe('helper', () => {
         expect(helper.folderExists('existing-folder')).toBe(true);
     });
 
-    it('isObject()', () => {
-        expect(helper.isObject()).toBe(false);
-        expect(helper.isObject(undefined)).toBe(false);
-        expect(helper.isObject([])).toBe(false);
-        expect(helper.isObject({})).toBe(false);
-        expect(helper.isObject('')).toBe(false);
-        expect(helper.isObject('a')).toBe(false);
-        expect(helper.isObject(null)).toBe(false);
-
-        expect(helper.isObject({ a: 1 })).toBe(true);
-    });
-
-    it('isArray()', () => {
-        expect(helper.isArray()).toBe(false);
-        expect(helper.isArray(undefined)).toBe(false);
-        expect(helper.isArray([])).toBe(false);
-        expect(helper.isArray({})).toBe(false);
-        expect(helper.isArray('')).toBe(false);
-        expect(helper.isArray('a')).toBe(false);
-        expect(helper.isArray(null)).toBe(false);
-
-        expect(helper.isArray(['a'])).toBe(true);
-    });
-
     it('getCWD()', () => {
         expect(helper.getCWD()).toBe(process.cwd());
     });

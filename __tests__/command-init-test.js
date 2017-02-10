@@ -6,23 +6,34 @@ jest.mock('fs');
 jest.mock('path');
 jest.mock('../lib/test-runner');
 
-const fs        = require.requireMock('fs');
-const cmdInit   = require('../lib/command-init');
+const cmdInit = require('../lib/command-init');
+
+global.console.log = jest.fn();
 
 describe('CMD: init', () => {
-    it('should should create config', () => {
-        cmdInit('not-existing-file');
+    beforeEach(() => {
+        console.log.mock.calls = [];
+    });
 
-        expect(fs.writeFileSync.mock.calls.length).toBe(1);
-        expect(fs.writeFileSync.mock.calls[0]).toEqual(['not-existing-file', { dir: './linden', cases: [] }]);
+    it('should create config', () => {
+        let result = cmdInit('not-existing-file');
+
+        expect(result).toBe(true);
+        expect(console.log).not.toHaveBeenCalled();
     });
 
     it('should not create config', () => {
-        fs.writeFileSync.mock.calls = [];
+        let result = cmdInit('existing-file');
 
-        cmdInit('existing-file');
+        expect(result).toBe(false);
+        expect(console.log).not.toHaveBeenCalled();
+    });
 
-        expect(fs.writeFileSync.mock.calls.length).toBe(0);
+    it('should handle fs error', function() {
+        let result = cmdInit('file-with-error');
+
+        expect(result).toBe(false);
+        expect(console.log).toHaveBeenCalledWith('File error');
     });
 });
 

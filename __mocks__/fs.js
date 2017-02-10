@@ -39,7 +39,12 @@ function readFileSync(name) {
     return fileData[name];
 }
 
+function writeFileSync(name) {
+    if (name === 'file-with-error') throw new Error('File error');
+}
+
 fs.statSync         = statSync;
 fs.readFileSync     = readFileSync;
+fs.writeFileSync    = writeFileSync;
 
 module.exports  = fs;
