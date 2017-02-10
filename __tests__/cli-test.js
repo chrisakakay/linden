@@ -2,7 +2,6 @@
 
 /* eslint-env jest */
 jest.mock('../lib/command-init');
-jest.mock('../lib/test-runner');
 jest.mock('../lib/command-run');
 
 const cli       = require('../lib/cli');

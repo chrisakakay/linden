@@ -4,7 +4,6 @@
 
 jest.mock('fs');
 jest.mock('path');
-jest.mock('../lib/test-runner');
 
 const cmdInit = require('../lib/command-init');
 
