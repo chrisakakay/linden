@@ -29,6 +29,8 @@
     "node": ">=6.9.0"
   },
   "dependencies": {
+    "linden-fs-helper": "GaborSzalay/linden-fs-helper",
+    "linden-configuration-parser": "GaborSzalay/linden-configuration-parser",
     "is-not-empty": "^0.1.0",
     "linden-task-runner": "^0.1.0",
     "minimist": "^1.2.0"
