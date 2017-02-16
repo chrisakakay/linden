@@ -20,7 +20,6 @@
     "lib/cli.js",
     "lib/command-init.js",
     "lib/command-run.js",
-    "lib/helper.js",
     "lib/test-runner.js",
     "config/linden.json"
   ],
@@ -30,6 +29,8 @@
     "node": ">=6.9.0"
   },
   "dependencies": {
+    "linden-fs-helper": "^0.1.0",
+    "linden-configuration-parser": "^0.1.0",
     "is-not-empty": "^0.1.0",
     "linden-task-runner": "^0.1.0",
     "minimist": "^1.2.0"
