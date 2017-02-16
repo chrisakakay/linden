@@ -1,34 +1,42 @@
 {
   "name": "linden",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Visual regression tool",
   "repository": "chrisakakay/linden",
   "main": "index.js",
   "scripts": {
     "local": "npm -g install .",
-    "lint": "eslint bin lib spec",
+    "lint": "eslint bin lib __tests__ __mocks__",
     "pretest": "npm run lint",
-    "test": "jasmine",
-    "coverage": "istanbul cover --include-all-sources -x **/spec/** -x **/bin/** node_modules/jasmine/bin/jasmine.js",
-    "precoverage": "npm run lint",
-    "prelocal": "npm run coverage",
-    "precoveralls": "npm run coverage",
+    "test": "jest --coverage",
+    "test:watch": "npm run test -- --watchAll",
     "coveralls": "cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
   },
   "bin": {
     "linden": "bin/linden.js"
   },
-  "author": "Krisztian Nagy",
+  "files": [
+    "bin/linden.js",
+    "lib/cli.js",
+    "lib/command-init.js",
+    "lib/command-run.js",
+    "config/linden.json"
+  ],
+  "author": "Krisztian Nagy <chrisakakay@gmail.com> (http://chrisakakay.github.io/)",
   "license": "MIT",
+  "engines": {
+    "node": ">=6.9.0"
+  },
   "dependencies": {
-    "minimist": "^1.2.0",
-    "phantomjs-prebuilt": "^2.1.7",
-    "selenium-webdriver": "^2.53.2"
+    "is-not-empty": "^0.1.0",
+    "linden-fs-helper": "^0.1.0",
+    "linden-configuration-parser": "^0.1.0",
+    "linden-task-runner": "^0.1.0",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.9",
-    "eslint": "^2.13.1",
-    "istanbul": "^0.4.3",
-    "jasmine": "^2.4.1"
+    "coveralls": "^2.11.16",
+    "eslint": "^3.15.0",
+    "jest": "^18.1.0"
   }
 }
