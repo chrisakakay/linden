@@ -1,7 +1,6 @@
 'use strict';
 
 /* eslint-env jest */
-jest.mock('linden-configuration-parser');
 jest.mock('../lib/command-init');
 jest.mock('../lib/command-run');
 

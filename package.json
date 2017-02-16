@@ -20,18 +20,17 @@
     "lib/cli.js",
     "lib/command-init.js",
     "lib/command-run.js",
-    "lib/test-runner.js",
     "config/linden.json"
   ],
-  "author": "Krisztian Nagy",
+  "author": "Krisztian Nagy <chrisakakay@gmail.com> (http://chrisakakay.github.io/)",
   "license": "MIT",
   "engines": {
     "node": ">=6.9.0"
   },
   "dependencies": {
+    "is-not-empty": "^0.1.0",
     "linden-fs-helper": "^0.1.0",
     "linden-configuration-parser": "^0.1.0",
-    "is-not-empty": "^0.1.0",
     "linden-task-runner": "^0.1.0",
     "minimist": "^1.2.0"
   },

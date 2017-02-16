@@ -4,8 +4,10 @@
 
 jest.mock('fs');
 jest.mock('path');
+jest.mock('linden-fs-helper');
 
-const cmdInit = require('../lib/command-init');
+const cmdInit   = require('../lib/command-init');
+const helper    = require.requireMock('linden-fs-helper');
 
 global.console.log = jest.fn();
 
@@ -15,6 +17,8 @@ describe('CMD: init', () => {
     });
 
     it('should create config', () => {
+        helper.fileExists.mockReturnValueOnce(false);
+
         let result = cmdInit('not-existing-file');
 
         expect(result).toBe(true);
@@ -22,6 +26,8 @@ describe('CMD: init', () => {
     });
 
     it('should not create config', () => {
+        helper.fileExists.mockReturnValueOnce(true);
+
         let result = cmdInit('existing-file');
 
         expect(result).toBe(false);
